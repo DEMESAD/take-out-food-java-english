@@ -10,6 +10,7 @@ public class App {
     int item1 = 18;
     int item13 = 6;
     int item22 = 8;
+    int quantity;
 
     public App(ItemRepository itemRepository, SalesPromotionRepository salesPromotionRepository) {
         this.itemRepository = itemRepository;
@@ -30,9 +31,9 @@ public class App {
     public String getMenu(List<String> inputs){
         String receipt = "";
         for (String temp : inputs) {
-            String[] parts = temp.split(" ");//split the order ex. ITEM0001 and 1 from ITEM0001 x 1
-            String foodNum = parts[0]; // the food code
-            int quantity = Integer.parseInt(parts[2]); //quantity of food
+            String[] parts = temp.split(" ");
+            String foodNum = parts[0]; 
+            quantity = Integer.parseInt(parts[2]); 
             if(foodNum.equals("ITEM0001")){
                 receipt += "Braised chicken x "+quantity+" = "+(quantity*item1)+" yuan\n";
             } else if(foodNum.equals("ITEM0013")){
@@ -49,16 +50,16 @@ public class App {
         List<String> halfPriceDish = new ArrayList<>();
         List<Integer> halfPriceAmounts = new ArrayList<>();
         for (String temp : inputs) {
-            String[] parts = temp.split(" ");//split the order ex. ITEM0001 and 1 from ITEM0001 x 1
-            String foodno = parts[0]; // the food code
-            int quantity = Integer.parseInt(parts[2]); //quantity of food
-            if(foodno.equals("ITEM0001")){
+            String[] parts = temp.split(" ");
+            String foodNum = parts[0]; 
+            quantity = Integer.parseInt(parts[2]); 
+            if(foodNum.equals("ITEM0001")){
                 overallTotal += quantity * item1;
                 halfPriceDish.add("Braised chicken");
                 halfPriceAmounts.add(18/2);
-            } else if(foodno.equals("ITEM0013")){
+            } else if(foodNum.equals("ITEM0013")){
                 overallTotal += quantity * item13;
-            } else if(foodno.equals("ITEM0022")){
+            } else if(foodNum.equals("ITEM0022")){
                 overallTotal += quantity * item22;
                 halfPriceDish.add("Cold noodles");
                 halfPriceAmounts.add(8/2);
